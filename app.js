@@ -18,6 +18,6 @@ app.use("/api/v1/product", productRouter);
 app.use("/api/v1/car", carRouter);
 
 app.all("*", (req, res, next) => {
-  res.send("Not Found");
+  res.send({ message: "URL Not Found" });
 });
 module.exports = app;

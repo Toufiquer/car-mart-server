@@ -6,8 +6,10 @@ module.exports.carServiceSave = async (data) => {
   // $ do any thing before save
   // const result = await car.save();
   // @ create
+
+  console.log(data, " => Line No: 10");
   const result = await carModel.create({ ...data });
-  result.logger();
+  // result.logger();
   return result;
 };
 module.exports.carServiceGet = async (id) => {
