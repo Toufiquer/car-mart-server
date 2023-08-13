@@ -16,7 +16,6 @@ module.exports.carServiceGetId = async (id) => {
   // @ find all
   console.log(id, " => Line No: 17");
   const result = await carModel.findOne({ _id: id });
-  console.log(result, " => Line No: 19");
   // @ find a doc
   // const result = await carModel.find({id: "1234..."});
   // const result = await carModel.findById("1234");
@@ -66,16 +65,26 @@ module.exports.carServiceGet = async (id) => {
 
   return result;
 };
-module.exports.carServiceUpdate = async (id) => {
+module.exports.carServiceUpdate = async ({ id, data }) => {
   // @ update a car
-  const query = { id: id };
-  const update = { $set: { name: "jason bourne" } };
-  const options = "";
-  const result = await carModel.updateOne(query, update, options);
+
+  console.log(
+    {
+      id,
+      data,
+    },
+    " => Line No: 76"
+  );
+  const query = { _id: id };
+  const update = { $set: { ...data } };
+  const options = {
+    new: true,
+  };
+  const result = await carModel.findOneAndUpdate(query, update, options);
   return result;
 };
 module.exports.carServiceDelete = async (id) => {
   // @ delete a car
-  const result = await carModel.deleteOne({ id: "1234" });
+  const result = await carModel.deleteOne({ _id: id });
   return result;
 };

@@ -53,7 +53,10 @@ module.exports.getCar = async (req, res, next) => {
 };
 module.exports.updateCar = async (req, res, next) => {
   try {
-    const result = await carServiceUpdate(req.body);
+    const result = await carServiceUpdate({
+      id: req.params.id,
+      data: req.body,
+    });
     res.status(200).send({
       status: "success",
       message: "Data is saved",
@@ -68,7 +71,7 @@ module.exports.updateCar = async (req, res, next) => {
 };
 module.exports.deleteCar = async (req, res, next) => {
   try {
-    const result = await carServiceDelete(req.body);
+    const result = await carServiceDelete(req.params?.id);
     res.status(200).send({
       status: "success",
       message: "Data is saved",
