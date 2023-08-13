@@ -6,12 +6,11 @@ const carRouter = require("./v1/car/car.route");
 const {
   globalErrorHandler,
 } = require("./middleware/globalErrorHandler/globalErrorHandler");
+const { apiLimiter } = require("./middleware/apiLimiter/apiLimiter");
 
 // middle ware
 app.use(express.json());
 app.use(cors());
-
-
 
 // Apply the rate limiting middleware to API calls only
 // Limit each IP to 100 requests per `window` (here, per 15 minutes)
